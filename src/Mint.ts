@@ -1,5 +1,5 @@
 import { Connection, Keypair, PublicKey } from "@solana/web3.js";
-import { getOrCreateAssociatedTokenAccount, mintTo } from "@solana/spl-token";
+import { getMint, getOrCreateAssociatedTokenAccount, mintTo } from "@solana/spl-token";
 import bs58 from 'bs58';
 require('dotenv').config();
 
@@ -40,14 +40,16 @@ export default async function createUserATA(RecipientPrivateKey:string,amount:nu
       mintAddress,
       userWallet
     );
-
+    const mintInfo = await getMint(connection, mintAddress);
+    const decimals = mintInfo.decimals;
+    const amountToMint = BigInt(amount * Math.pow(10, decimals));
     const mint=await mintTo(
         connection,
         payerKeypair,
         mintAddress,
         ata.address,
         payerKeypair,
-        amount*(1000000000),
+       amountToMint,
         
     );
 
@@ -64,3 +66,4 @@ export default async function createUserATA(RecipientPrivateKey:string,amount:nu
     throw error; 
   }
 }
+

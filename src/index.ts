@@ -42,7 +42,8 @@ app.post("/stake", async (req: Request, res: Response) => {
     if (!senderAddress || !receiverAddress) {
       throw new Error('Missing sender/receiver addresses');
     }
-
+    if(receiverAddress===process.env.PUB_KEY){
+        
     const preBalanceSender = meta.pre_balances?.[0];
     const postBalanceSender = meta.post_balances?.[0];
     const preBalanceReceiver = meta.pre_balances?.[1];
@@ -86,6 +87,7 @@ app.post("/stake", async (req: Request, res: Response) => {
     console.log('\n[10] Final response:', response);
 
     res.json(response);
+    }
     
   } catch (error) {
     console.error('\n[ERROR]', error);
