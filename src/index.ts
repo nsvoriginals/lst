@@ -92,7 +92,7 @@ app.post("/stake", async (req: Request, res: Response) => {
     const errorResponse = {
       success: false,
       error: error instanceof Error ? error.message : 'Transaction processing failed',
-      stack: process.env.NODE_ENV !== 'production' ? error.stack : undefined
+      
     };
     console.log('\n[ERROR RESPONSE]', errorResponse);
     res.status(400).json(errorResponse);
