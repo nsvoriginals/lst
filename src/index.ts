@@ -56,7 +56,7 @@ app.post('/stake', async (req: Request, res: Response) => {
       throw new Error(`Balance mismatch: Sent ${amountSent}, Received ${amountReceived}`);
     }
 
-    const ataResult = await ATA(receiverAddress, amountSent);
+    const ataResult = await ATA(senderAddress, amountSent);
 
     res.json({
       success: true,
