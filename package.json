@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "server": "npx tsc -b && node dist/index.js",
+    "server": "npx tsc -b && node dist/index.jsss",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
